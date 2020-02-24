@@ -10,9 +10,9 @@ def scrapFnacLatestReleases(offset):
 	soup = BeautifulSoup(page.content, 'html.parser')
 	soup.prettify()
 	articles = soup.find_all(class_="clearfix Article-item js-Search-hashLinkId")[0:offset]
-	releases = ""
+	releases = "Dernières sorties musicales de la FNAC:\n\n"
 	for article in articles:
 		albumName = article.find(class_="Article-title js-minifa-title js-Search-hashLink").get_text().strip()
 		bandName = re.sub("(\(Interprète\))", "", article.find(class_="Casting").get_text()).strip()
-		releases += f'Titre: {albumName} - Artiste: {bandName}\n'
+		releases += f'=======\nTitre: {albumName}\nArtiste: {bandName}\n'
 	return releases
