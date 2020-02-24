@@ -25,7 +25,7 @@ def newMessage(data):
 		releases = scrapFnacLatestReleases(10)
 		payload = {"content": releases}
 		headers = {"Authorization": f'Bearer {auth.token}'}
-		send = requests.post("http://localhost:8000/message/create", json=payload, headers=headers)
+		send = requests.post("http://localhost:8000/message/", json=payload, headers=headers)
 		print("Message sent")
 
 sio.connect(f'http://localhost:8080?token={auth.token}')
